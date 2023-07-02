@@ -7,7 +7,18 @@ const Words = () => {
   const [notFound, setNotFound] = useState();
   const [type, setType] = useState("");
   const [selected, setSelected] = useState();
+  const [prevWords, setPrevWords] = useState([])
 {/*  const [start, setStart] = useState(false); */}
+
+
+
+    useEffect(()=>{
+      const prevUp = JSON.parse(localStorage.getItem("prev")) || []
+      setPrevWords(prevUp)
+      
+    }, [])
+
+
 
   const handleSyn = (newWord) => {
     fetch(`https://api.datamuse.com/words?rel_syn=${newWord}`)
@@ -16,6 +27,9 @@ const Words = () => {
         if (data.length > 0) {
           setSyns(data);
           setNotFound(false);
+          const prevs = [...prevWords, newWord]
+          setPrevWords(prevs)
+          localStorage.setItem("prev", JSON.stringify(prevs) )
         } else {
           setSyns([]);
           setNotFound(true);
@@ -36,7 +50,10 @@ const Words = () => {
           setNotFound(true);
         }
       });
+      
   }, [word, type]);
+
+
 
   const codes = [
     {
@@ -111,6 +128,7 @@ const Words = () => {
   ];
 
   const th = codes.find((code) => code.code === selected)?.name;
+  console.log(prevWords)
 
   return (
     <div className="container">
@@ -124,10 +142,17 @@ const Words = () => {
             id="word"
             value={word}
             onChange={(event) => {
-              setWord(event.target.value);
+              setWord(event.target.value)
             }}
           />
         </label>
+        <p>Last searched words :</p>
+        <div className="prevs">
+          
+          {prevWords && prevWords.slice(-3).map(prevs => (
+            <p key={prevs}>{prevs}</p>
+          ))}
+        </div>
 
         <div className="options-container">
           {codes.map((code) => (
@@ -137,7 +162,7 @@ const Words = () => {
                 onClick={() => {
                   setType(code.code);
                   setSelected(code.code);
-                  setStart(true);
+                  
                 }}
               >
                 {code.name}{" "}
@@ -159,7 +184,7 @@ const Words = () => {
               </tr>
             </thead>
             <tbody>
-              {syns.map((syn, index) => (
+              {syns.map((syn) => (
                 <tr key={syn.word}>
                   <td className="word" onClick={() => handleSyn(syn.word)}>
                     {syn.word} 
