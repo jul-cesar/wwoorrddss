@@ -13,20 +13,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  background-color: #f8f8f8;
 }
 
-.prevs{
+.prevs {
   display: flex;
   gap: 8px;
 }
 
-.prevs p{
+.prevs p {
   opacity: 0.8;
   cursor: pointer;
 }
 
-.prevs p:hover{
+.prevs p:hover {
   color: #444;
 }
 
@@ -95,7 +95,6 @@ table {
   width: 97vw;
   border-collapse: collapse;
   margin: 20px;
- 
 }
 
 th,
@@ -104,7 +103,9 @@ td {
   border-bottom: 1px solid #ddd;
   text-align: left;
   max-width: 100vw;
-
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 th {
@@ -131,7 +132,7 @@ th {
 }
 
 .navbar a {
-  text-decoration:  none;
+  text-decoration: none;
   color: white;
   margin: 12px;
 }
@@ -142,19 +143,18 @@ th {
   color: white;
 }
 
-.abt{
+.abt {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
-.abt p{
+.abt p {
   text-align: center;
   margin: 1rem 0;
 }
 
-
-
-
+.clear{
+  cursor: pointer;
+}

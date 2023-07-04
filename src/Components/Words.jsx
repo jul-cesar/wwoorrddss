@@ -103,7 +103,7 @@ const Words = () => {
           
         </div>
 
-        <p onClick={()=>{
+        <p className="clear" onClick={()=>{
               const clear = localStorage.clear()
               setPrevWords([clear])
             }}>Clear</p>
