@@ -18,7 +18,16 @@
 
 .prevs{
   display: flex;
-  gap: 4px;
+  gap: 8px;
+}
+
+.prevs p{
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.prevs p:hover{
+  color: #444;
 }
 
 .form {
@@ -28,7 +37,7 @@
   align-items: center;
 }
 
-input[type="text"] {
+input[type="search"] {
   padding: 5px;
   font-size: 16px;
   border-radius: 4px;
@@ -66,10 +75,10 @@ input[type="text"] {
 }
 
 .seleccionado {
-  background-color: #555;
+  background-color: #444;
   padding: 8px 16px;
   font-size: 14px;
-
+  order: 1;
   color: #fff;
   border: none;
   border-radius: 4px;
